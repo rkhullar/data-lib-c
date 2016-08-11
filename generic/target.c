@@ -14,8 +14,12 @@ int main()
   node_class* Node = node_class_init();
 
   // make some nodes
-  node* a = Node->init(2147483647);
-  node* b = Node->init(2147483648);
+
+  int da = 21;
+  char db[] = "hello";
+
+  node* a = Node->init(&da);
+  node* b = Node->init(db);
 
   // do what nodes do
   Node->print(a);

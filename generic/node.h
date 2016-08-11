@@ -12,17 +12,17 @@ typedef struct node_class node_class;
 
 struct node
 {
-  int data;
+  void* data;
 };
 
 struct node_class
 {
-  node* (*init)(int data);
+  node* (*init)(void *data);
   void (*print)(node *self);
 };
 
 extern node_class* node_class_init();
-extern node* node_init(int data);
-static void node_print(node* o);
+extern node* node_init(void *data);
+static void node_print(node *o);
 
 #endif //OBJECT_NODE_H

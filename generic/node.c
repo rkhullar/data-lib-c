@@ -10,7 +10,7 @@
 
 //{{{
 
-extern node* node_init(int data)
+extern node* node_init(void* data)
 {
   node* o = (node*) malloc(sizeof(node));
   if(o == NULL) exit(1);
@@ -20,7 +20,7 @@ extern node* node_init(int data)
 
 static void node_print(node* o)
 {
-  printf("%d\n", o->data);
+  printf("%p\n", o->data);
 }
 
 //}}}
