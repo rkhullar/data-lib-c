@@ -31,7 +31,10 @@ static int object_cmp(object *a, object *b)
 
 static char * object_str(object *o)
 {
-  return "hello";
+  char str[10];
+  char *out = str;
+  sprintf(out, "%p", (void*)&o);
+  return out;
 }
 
 static void object_print(object *o)

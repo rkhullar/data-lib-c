@@ -18,8 +18,8 @@ int main()
   object *b = Object->init();
 
   // do what objects do
-  printf("base: %p\n", &a);
   Object->print(a);
+  //puts(Object->str(a));
 
   // clean up
   free(a);
