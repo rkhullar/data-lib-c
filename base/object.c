@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/11/16
- * @updated :  08/11/16
+ * @updated :  08/12/16
  */
 
 #include <stdio.h>
@@ -34,6 +34,7 @@ static char * object_str(object *o)
   char str[10];
   char *out = str;
   sprintf(out, "%p", (void*)&o);
+  printf("%s\n", out);
   return out;
 }
 

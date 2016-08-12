@@ -7,14 +7,11 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-typedef struct object object;
-typedef struct object_class object_class;
-
-struct object
+typedef struct object
 {
-};
+} object;
 
-struct object_class
+typedef struct object_class
 {
   object * (*init)();
   int (*eq)(object *a, object *b);
@@ -22,7 +19,7 @@ struct object_class
   char * (*str)(object *self);
   void (*print)(object *self);
   int (*hash)(object *self);
-};
+} object_class;
 
 extern object_class * object_clazz();
 extern object * object_init();
