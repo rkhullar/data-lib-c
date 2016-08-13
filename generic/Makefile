@@ -1,12 +1,16 @@
+EXEC    = target
+SUPPORT = generic
+CFLAGS  = -DT=int
+
 default:	clean compile
 
 clean:
-	@rm -rf target *.o *.h.gch
+	@rm -rf $(EXEC) *.o *.h.gch
 
-compile:	node.h node.c target.c
-	gcc -c node.c -o node.o
-	gcc -c target.c -o target.o
-	gcc node.o target.o -o target
+compile:	$(SUPPORT).h $(SUPPORT).c $(EXEC).c
+	gcc -c $(CFLAGS) $(SUPPORT).c -o $(SUPPORT).o
+	gcc -c $(CFLAGS) $(EXEC).c -o $(EXEC).o
+	gcc $(SUPPORT).o $(EXEC).o -o $(EXEC)
 
 test:			default
-	./target
+	./$(EXEC)

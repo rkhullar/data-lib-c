@@ -6,6 +6,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+
 #include "object.h"
 
 int main()
@@ -20,6 +22,9 @@ int main()
   // do what objects do
   Object.print(&a);
   Object.print(b);
+
+  bool test = Object.eq(b, b);
+  printf("%d\n", test);
 
   // clean up
   free(b);

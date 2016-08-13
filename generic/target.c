@@ -1,34 +1,20 @@
 /*
  * @author  :  Rajan Khullar
- * @created :  01/31/16
- * @updated :  01/31/16
+ * @created :  08/13/16
+ * @updated :  08/13/16
  */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "node.h"
+#include <stdbool.h>
+
+#include "generic.h"
 
 int main()
 {
-  // initialize list node class
-  node_class* Node = node_class_init();
-
-  // make some nodes
-
-  int da = 21;
-  char db[] = "hello";
-
-  node* a = Node->init(&da);
-  node* b = Node->init(db);
-
-  // do what nodes do
-  Node->print(a);
-  Node->print(b);
-
-  // clean up
-  free(a);
-  free(b);
-  free(Node);
-
+  generic_class Object = generic_clazz();
+  T *ptr = Object.mllc();
+  Object.print(ptr);
+  free(ptr);
   return 0;
 }

@@ -6,6 +6,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+
 #include "object.h"
 
 //{{{
@@ -23,7 +25,7 @@ extern object * object_mllc()
   return o;
 }
 
-static int object_eq(object *a, object *b)
+static bool object_eq(object *a, object *b)
 {
   return a == b;
 }
