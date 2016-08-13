@@ -10,7 +10,13 @@
 
 //{{{
 
-extern object * object_init()
+extern object object_init()
+{
+  object o;
+  return o;
+}
+
+extern object * object_mllc()
 {
   object *o = (object*) malloc(sizeof(object));
   if(o == NULL) exit(1);
@@ -19,28 +25,27 @@ extern object * object_init()
 
 static int object_eq(object *a, object *b)
 {
-  return &a == &b;
+  return a == b;
 }
 
 static int object_cmp(object *a, object *b)
 {
-  if(&a > &b) return 1;
-  if(&a < &b) return -1;
+  if(a > b) return 1;
+  if(a < b) return -1;
   return 0;
 }
 
 static char * object_str(object *o)
 {
   char str[10];
-  char *out = str;
-  sprintf(out, "%p", (void*)&o);
-  printf("%s\n", out);
-  return out;
+  char *ptr = str;
+  sprintf(ptr, "%p", (void*) o);
+  return ptr;
 }
 
 static void object_print(object *o)
 {
-  printf("%s\n", object_str(o));
+  printf("%p\n", object_str(o));
 }
 
 static int object_hash(object *o)
@@ -52,16 +57,16 @@ static int object_hash(object *o)
 
 //{{{
 
-extern object_class * object_clazz()
+extern object_class object_clazz()
 {
-  object_class *c = (object_class*) malloc(sizeof(object_class));
-  if(c == NULL) exit(1);
-  c->init = &object_init;
-  c->eq = &object_eq;
-  c->cmp = &object_cmp;
-  c->str = &object_str;
-  c->print = &object_print;
-  c->hash = &object_hash;
+  object_class c;
+  c.init  = &object_init;
+  c.mllc  = &object_mllc;
+  c.eq    = &object_eq;
+  c.cmp   = &object_cmp;
+  c.str   = &object_str;
+  c.print = &object_print;
+  c.hash  = &object_hash;
   return c;
 }
 

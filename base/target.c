@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/11/16
- * @updated :  08/11/16
+ * @updated :  08/12/16
  */
 
 #include <stdio.h>
@@ -11,20 +11,24 @@
 int main()
 {
   // initialize list node class
-  object_class *Object = object_clazz();
+  object_class Object = object_clazz();
 
   // make some nodes
-  object *a = Object->init();
-  object *b = Object->init();
+  object a = Object.init();
+  object *ptr = &a;
+
+  //object *b = Object.mllc();
 
   // do what objects do
-  Object->print(a);
-  //puts(Object->str(a));
+  //printf("%p\n", (void*) ptr);
+  Object.print(ptr);
+
+  //Object.print(b);
+
+
 
   // clean up
-  free(a);
-  free(b);
-  free(Object);
+  //free(b);
 
   return 0;
 }
