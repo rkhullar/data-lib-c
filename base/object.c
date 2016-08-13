@@ -37,15 +37,19 @@ static int object_cmp(object *a, object *b)
 
 static char * object_str(object *o)
 {
+  /*
   char str[10];
   char *ptr = str;
   sprintf(ptr, "%p", (void*) o);
   return ptr;
+  */
+  return (char*) o;
 }
 
 static void object_print(object *o)
 {
-  printf("%p\n", object_str(o));
+  //printf("%s\n", object_str(o));
+  printf("%p\n", (void*)object_str(o));
 }
 
 static int object_hash(object *o)

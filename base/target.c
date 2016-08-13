@@ -15,20 +15,14 @@ int main()
 
   // make some nodes
   object a = Object.init();
-  object *ptr = &a;
-
-  //object *b = Object.mllc();
+  object *b = Object.mllc();
 
   // do what objects do
-  //printf("%p\n", (void*) ptr);
-  Object.print(ptr);
-
-  //Object.print(b);
-
-
+  Object.print(&a);
+  Object.print(b);
 
   // clean up
-  //free(b);
+  free(b);
 
   return 0;
 }
