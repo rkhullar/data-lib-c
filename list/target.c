@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/13/16
- * @updated :  08/13/16
+ * @updated :  08/14/16
  */
 
 #include <stdio.h>
@@ -10,6 +10,7 @@
 
 #include "node.h"
 #include "list.h"
+#include "misc.h"
 
 void test1()
 {
@@ -28,9 +29,17 @@ void test2()
   printf("%d\n", l.curr->data);
 }
 
+void test3()
+{
+  int x = 56666677;
+  char *s = itoa(x);
+  printf("%d=>%s\n", x, s);
+}
+
 int main()
 {
   //test1();
-  test2();
+  //test2();
+  test3();
   return 0;
 }
