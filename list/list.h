@@ -30,6 +30,6 @@ extern list list_init();
 extern list * list_mllc();
 
 static void list_print(list *o);
-static void list_insert(list *o);
+static void list_insert(list *o, T x);
 
 #endif //LINKED_LIST_H
