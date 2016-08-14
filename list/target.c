@@ -15,8 +15,10 @@
 void test1()
 {
   node_class Node = node_clazz();
+  Node.gstr = &itoa;
   node *ptr = Node.mllc(5);
   printf("%d\n", ptr->data);
+  Node.print(&Node, ptr);
   free(ptr);
 }
 
@@ -31,15 +33,15 @@ void test2()
 
 void test3()
 {
-  int x = 56666677;
+  int x = -56666677;
   char *s = itoa(x);
   printf("%d=>%s\n", x, s);
 }
 
 int main()
 {
-  //test1();
+  test1();
   //test2();
-  test3();
+  //test3();
   return 0;
 }

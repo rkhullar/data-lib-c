@@ -29,6 +29,16 @@ extern node * node_mllc(T x)
   return o;
 }
 
+extern char * node_str(node_class *kls, node *o)
+{
+  return kls->gstr(o->data);
+}
+
+extern void node_print(node_class *kls, node *o)
+{
+  printf("%s\n", node_str(kls, o));
+}
+
 //}}}
 
 //{{{
@@ -38,6 +48,9 @@ extern node_class node_clazz()
   node_class c;
   c.init  = &node_init;
   c.mllc  = &node_mllc;
+  c.gstr  = NULL;
+  c.str   = &node_str;
+  c.print = &node_print;
   return c;
 }
 
