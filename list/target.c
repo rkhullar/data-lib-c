@@ -12,13 +12,17 @@
 #include "list.h"
 #include "misc.h"
 
+int myint(){return 5;}
+
 void test1()
 {
+  node_gstr = &itoa;
+  node_test = &myint;
   node_class Node = node_clazz();
-  Node.gstr = &itoa;
   node *ptr = Node.mllc(5);
-  printf("%d\n", ptr->data);
-  Node.print(&Node, ptr);
+  //printf("%d\n", ptr->data);
+  //Node.print(ptr);
+  printf("%d\n", node_test());
   free(ptr);
 }
 

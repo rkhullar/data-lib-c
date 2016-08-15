@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/13/16
- * @updated :  08/13/16
+ * @updated :  08/15/16
  */
 
 #include <stdio.h>
@@ -9,6 +9,11 @@
 #include <stdbool.h>
 
 #include "node.h"
+
+//{{{
+StringFunc node_gstr;
+TestFunc node_test;
+//}}}
 
 //{{{
 
@@ -29,14 +34,14 @@ extern node * node_mllc(T x)
   return o;
 }
 
-extern char * node_str(node_class *kls, node *o)
+extern char * node_str(node *o)
 {
-  return kls->gstr(o->data);
+  return node_gstr(o->data);
 }
 
-extern void node_print(node_class *kls, node *o)
+extern void node_print(node *o)
 {
-  printf("%s\n", node_str(kls, o));
+  printf("%s\n", node_str(o));
 }
 
 //}}}
@@ -48,7 +53,6 @@ extern node_class node_clazz()
   node_class c;
   c.init  = &node_init;
   c.mllc  = &node_mllc;
-  c.gstr  = NULL;
   c.str   = &node_str;
   c.print = &node_print;
   return c;

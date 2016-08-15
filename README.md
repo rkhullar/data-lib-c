@@ -29,3 +29,6 @@ gcc
 
 ## TODO
 1. Add compiler flags -Wall -Werror
+
+## References
+1. http://www.cprogramming.com/tutorial/function-pointers.html
