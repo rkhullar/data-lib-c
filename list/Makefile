@@ -1,17 +1,19 @@
-EXEC    = target
+CC      = gcc
 CFLAGS  = -DT=int
+EXEC    = target
+DEPS    = node.h list.h misc.h
+OBJS    = node.o list.o misc.o target.o
 
-default:	clean compile
+default: clean compile
 
 clean:
 	@rm -rf $(EXEC) *.o *.h.gch
 
-compile:	node.h node.c list.h list.c misc.h misc.c $(EXEC).c
-	gcc -c $(CFLAGS) node.c -o node.o
-	gcc -c $(CFLAGS) list.c -o list.o
-	gcc -c $(CFLAGS) misc.c -o misc.o
-	gcc -c $(CFLAGS) $(EXEC).c -o $(EXEC).o
-	gcc node.o list.o misc.o $(EXEC).o -o $(EXEC)
+compile: $(OBJS)
+	$(CC) $^ $(CFLAGS) -o $(EXEC)
 
-test:			default
+test: default
 	./$(EXEC)
+
+%.o: %.c $(DEPS)
+	$(CC) -c $< $(CFLAGS) -o $@
