@@ -10,12 +10,10 @@
 
 #include "misc.h"
 
-extern const char * itoa(int x)
+extern char * itoa(int x)
 {
-  int l = snprintf(NULL, 0, "%d", x);
-  char s[l+1];
-  char *p = s;
+  int l = snprintf(NULL, 0, "%d", x) + 1;
+  char *p = (char*) malloc(l*sizeof(char));
   snprintf(p, l+1, "%d", x);
-  printf("i: %s\n", p);
   return p;
 }

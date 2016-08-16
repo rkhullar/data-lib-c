@@ -7,6 +7,6 @@
 #ifndef MISC_H
 #define MISC_H
 
-extern const char * itoa(int i);
+extern char * itoa(int i);
 
 #endif

@@ -17,10 +17,8 @@ void test1()
 {
   node_gstr = &itoa;
   node_class Node = node_clazz();
-  node *ptr = Node.mllc(5);
-  //printf("%d\n", ptr->data);
+  node *ptr = Node.mllc(42);
   Node.print(ptr);
-  //printf("t: %s\n", Node.str(ptr));
   free(ptr);
 }
 

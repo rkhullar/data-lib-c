@@ -12,7 +12,7 @@
 typedef struct node node;
 typedef struct node_class node_class;
 
-typedef const char * (*StringFunc)(T);
+typedef char * (*StringFunc)(T);
 typedef int (*TestFunc)(void);
 
 struct node {
@@ -25,7 +25,7 @@ struct node_class
 {
   node   (*init)  (T x);
   node * (*mllc)  (T x);
-  const char * (*str) (node *self);
+  char * (*str)   (node *self);
   void   (*print) (node *self);
   //void   (*insert)(node *self, T x);
 };
@@ -35,7 +35,7 @@ extern node_class node_clazz();
 extern node   node_init(T x);
 extern node * node_mllc(T x);
 
-static const char * node_str   (node *o);
+static char * node_str   (node *o);
 static void   node_print (node *o);
 
 extern StringFunc node_gstr;
