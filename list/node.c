@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "macros.h"
 #include "node.h"
 
 //{{{
@@ -34,13 +35,18 @@ extern node * node_mllc(T x)
   return o;
 }
 
-extern char * node_str(node *o)
+extern const char * node_str(node *o)
 {
+  //char *p = node_gstr(o->data);
+  //printf("s: %s\n", p);
+  //return p;
   return node_gstr(o->data);
 }
 
 extern void node_print(node *o)
 {
+  //printf("%s\n", p);
+  //char *p = node_str(o);
   printf("%s\n", node_str(o));
 }
 

@@ -4,6 +4,7 @@
  * @updated :  08/13/16
  */
 
+#include "macros.h"
 #include "node.h"
 
 #ifndef LINKED_LIST_H

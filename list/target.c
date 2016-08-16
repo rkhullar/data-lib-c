@@ -8,21 +8,19 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "macros.h"
 #include "node.h"
 #include "list.h"
 #include "misc.h"
 
-int myint(){return 5;}
-
 void test1()
 {
   node_gstr = &itoa;
-  node_test = &myint;
   node_class Node = node_clazz();
   node *ptr = Node.mllc(5);
   //printf("%d\n", ptr->data);
-  //Node.print(ptr);
-  printf("%d\n", node_test());
+  Node.print(ptr);
+  //printf("t: %s\n", Node.str(ptr));
   free(ptr);
 }
 
@@ -38,7 +36,7 @@ void test2()
 void test3()
 {
   int x = -56666677;
-  char *s = itoa(x);
+  const char *s = itoa(x);
   printf("%d=>%s\n", x, s);
 }
 

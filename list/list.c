@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "macros.h"
 #include "node.h"
 #include "list.h"
 

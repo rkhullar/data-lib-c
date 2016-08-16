@@ -1,7 +1,8 @@
 CC      = gcc
-CFLAGS  = -DT=int
+#CFLAGS  = -DT=int
+CFLAGS  =
 EXEC    = target
-DEPS    = node.h list.h misc.h
+DEPS    = node.h list.h misc.h macros.h
 OBJS    = node.o list.o misc.o target.o
 
 default: clean compile
