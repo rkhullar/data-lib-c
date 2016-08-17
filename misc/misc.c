@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/14/16
- * @updated :  08/15/16
+ * @updated :  08/16/16
  */
 
 #include <stdio.h>
@@ -9,6 +9,11 @@
 #include <stdbool.h>
 
 #include "misc.h"
+
+extern bool ieq(int a, int b)
+{
+  return a == b;
+}
 
 extern char * itoa(int x)
 {

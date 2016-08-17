@@ -45,7 +45,16 @@ static void list_insert(list *o, T x)
   o->curr = n;
 }
 
+static char * list_str(list *o)
+{
+  return "hello world";
+}
 //}}}
+
+static void list_print(list *o)
+{
+  printf("%s\n", list_str(o));
+}
 
 //{{{
 
@@ -54,6 +63,8 @@ extern list_class list_clazz()
   list_class c;
   c.init   = &list_init;
   c.mllc   = &list_mllc;
+  c.str    = &list_str;
+  c.print  = &list_print;
   c.insert = &list_insert;
   return c;
 }

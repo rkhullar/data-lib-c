@@ -13,7 +13,7 @@
 #include "list.h"
 #include "misc.h"
 
-void test1()
+void test01()
 {
   node_gstr = &itoa;
   node_class Node = node_clazz();
@@ -22,7 +22,7 @@ void test1()
   free(ptr);
 }
 
-void test2()
+void test02()
 {
   list_class List = list_clazz();
   list l = List.init();
@@ -31,17 +31,28 @@ void test2()
   printf("%d\n", l.curr->data);
 }
 
-void test3()
+void test03()
 {
   int x = -56666677;
   const char *s = itoa(x);
   printf("%d=>%s\n", x, s);
 }
 
+void test04()
+{
+  node_gstr = &itoa;
+  node_geq = &ieq;
+  list_class List = list_clazz();
+  list *l = List.mllc();
+  List.print(l);
+  free(l);
+}
+
 int main()
 {
-  test1();
-  //test2();
-  //test3();
+  //test01();
+  //test02();
+  //test03();
+  test04();
   return 0;
 }

@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  01/31/16
- * @updated :  08/13/16
+ * @updated :  08/16/16
  */
 
 #include "macros.h"
@@ -13,15 +13,14 @@
 typedef struct list
 {
   int size;
-  node* head;
-  node* tail;
-  node* curr;
+  node *head, *tail, *curr;
 } list;
 
 typedef struct list_class
 {
   list   (*init)   ();
   list * (*mllc)   ();
+  char * (*str)    (list *self);
   void   (*print)  (list *self);
   void   (*insert) (list *self, T x);
 } list_class;
@@ -30,7 +29,8 @@ extern list_class list_clazz();
 extern list list_init();
 extern list * list_mllc();
 
-static void list_print(list *o);
-static void list_insert(list *o, T x);
+static char * list_str(list *o);
+static void   list_print(list *o);
+static void   list_insert(list *o, T x);
 
 #endif //LINKED_LIST_H

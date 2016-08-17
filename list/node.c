@@ -13,7 +13,7 @@
 
 //{{{
 StringFunc node_gstr;
-TestFunc node_test;
+EqualFunc node_geq;
 //}}}
 
 //{{{
