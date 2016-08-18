@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/13/16
- * @updated :  08/14/16
+ * @updated :  08/17/16
  */
 
 #include <stdio.h>
@@ -42,10 +42,19 @@ void test04()
 {
   node_gstr = &itoa;
   node_geq = &ieq;
+  node_class Node = node_clazz();
   list_class List = list_clazz();
   list *l = List.mllc();
+  node *n1, *n2, *n3;
+  n1 = Node.mllc(1);
+  n2 = Node.mllc(2);
+  n3 = Node.mllc(3);
+  l->head = n1; l->tail = n3; l->size = 3;
+                 n1->next = n2;
+  n2->prev = n1; n2->next = n3;
+  n3->prev = n2;
   List.print(l);
-  free(l);
+  free(n1); free(n2); free(n3); free(l);
 }
 
 int main()

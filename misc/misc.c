@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 #include "misc.h"
 
@@ -21,4 +22,11 @@ extern char * itoa(int x)
   char *p = (char*) malloc(l*sizeof(char));
   snprintf(p, l+1, "%d", x);
   return p;
+}
+
+extern void join(char *dest, char *a[])
+{
+  char t[6] = "hello";
+  dest = t;
+  //strcpy(dest, "this is a string");
 }

@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/13/16
- * @updated :  08/13/16
+ * @updated :  08/17/16
  */
 
 #include <stdio.h>
@@ -11,6 +11,7 @@
 #include "macros.h"
 #include "node.h"
 #include "list.h"
+#include "misc.h"
 
 //{{{
 //}}}
@@ -47,7 +48,19 @@ static void list_insert(list *o, T x)
 
 static char * list_str(list *o)
 {
-  return "hello world";
+  int x = 1, n = o->size;
+  char *s; char *a[n+2];
+  node *t = o->head;
+  while(t != NULL)
+  {
+    a[x++] = node_gstr(t->data);
+    t = t->next;
+  }
+  a[0] = "["; a[n+1] = "]";
+  printf("%p\n", (void*) s);
+  join(s, a);
+  printf("%p\n", (void*) s);
+  return s;
 }
 //}}}
 
