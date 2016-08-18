@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/13/16
- * @updated :  08/17/16
+ * @updated :  08/18/16
  */
 
 #include <stdio.h>
@@ -49,7 +49,7 @@ static void list_insert(list *o, T x)
 static char * list_str(list *o)
 {
   int x = 1, n = o->size;
-  char *s; char *a[n+2];
+  char *a[n+2];
   node *t = o->head;
   while(t != NULL)
   {
@@ -57,16 +57,15 @@ static char * list_str(list *o)
     t = t->next;
   }
   a[0] = "["; a[n+1] = "]";
-  printf("%p\n", (void*) s);
-  join(s, a);
-  printf("%p\n", (void*) s);
-  return s;
+  return join(n+2, a);
 }
 //}}}
 
 static void list_print(list *o)
 {
-  printf("%s\n", list_str(o));
+  char *p = list_str(o);
+  printf("%s\n", p);
+  free(p);
 }
 
 //{{{

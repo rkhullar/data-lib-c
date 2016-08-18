@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  01/31/16
- * @updated :  08/16/16
+ * @updated :  08/18/16
  */
 
 #include "macros.h"
@@ -12,7 +12,7 @@
 
 typedef struct list
 {
-  int size;
+  unsigned int size;
   node *head, *tail, *curr;
 } list;
 

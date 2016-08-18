@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/14/16
- * @updated :  08/16/16
+ * @updated :  08/18/16
  */
 
 #include <stdio.h>
@@ -18,15 +18,29 @@ extern bool ieq(int a, int b)
 
 extern char * itoa(int x)
 {
-  int l = snprintf(NULL, 0, "%d", x) + 1;
+  unsigned int l = snprintf(NULL, 0, "%d", x) + 1;
   char *p = (char*) malloc(l*sizeof(char));
   snprintf(p, l+1, "%d", x);
   return p;
 }
 
-extern void join(char *dest, char *a[])
+extern char * join(unsigned int n, char *a[])
 {
-  char t[6] = "hello";
-  dest = t;
-  //strcpy(dest, "this is a string");
+  unsigned int x=0, y=0, l=0;
+  unsigned int ls[n];
+  for(x = 0; x < n; x++)
+  {
+    ls[x] = strlen(a[x]);
+    l += ls[x];
+  }
+  l += 1;
+  char *s = (char*) malloc(l*sizeof(char));
+  for(x = 0; x < n; x++)
+  {
+    char *c = a[x];
+    while(*c)
+      s[y++] = *c++;
+  }
+  s[y] = '\0';
+  return s;
 }
