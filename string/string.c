@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/18/16
- * @updated :  08/18/16
+ * @updated :  08/19/16
  */
 
 #include <stdio.h>
@@ -75,30 +75,37 @@ static bool string_equal(string* a, string* b)
   return *x == *y;
 }
 
+/*
+ * @input  : length string array, delimiter, string array
+ * @output : joined string
+ */
 static string* string_join(unsigned int n, string *d, string *a[])
 {
   string **t = a, *s; char *m, *c;
-  unsigned int ls[n], dl, l=0, x=0, y=0;
-  dl = string_length(d);
-  for(; x < n; x++)
+  unsigned int ls[n], l, x, y=0;
+  // find total lenght of new string
+  for(x = 0; x < n; x++)
   {
-    ls[x] = string_length(a[x]);
+    ls[x] = a[x]->length;
     l += ls[x];
     t++;
   }
-  l += dl*(n-1) + 1;
+  l += (n-1)*d->length + 1;
+  // create output string
   s = string_mllc("");
   m = (char*) malloc(l*sizeof(char));
   for(x = 0; x < n; x++)
   {
+    // add chars from one input string
     c = a[x]->ptr;
     while(*c)
       m[y++] = *c++;
+    // add chars from delimiter
     c = d->ptr;
     while(*c && y < l-1)
       m[y++] = *c++;
   }
-  m[y] = '\0';
+  m[y] = '\0'; // terminator
   s->ptr = m;
   s->length = l-1;
   return s;
