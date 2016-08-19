@@ -32,3 +32,4 @@ gcc
 
 ## References
 1. http://www.cprogramming.com/tutorial/function-pointers.html
+2. http://stackoverflow.com/questions/1472138/c-default-arguments

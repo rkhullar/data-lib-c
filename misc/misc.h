@@ -9,8 +9,5 @@
 
 extern bool ieq(int a, int b);
 extern char * itoa(int i);
-extern char * join(unsigned int l, char *a[]);
-extern bool string_eq(char *a, char *b);
-extern void test(char *a[]);
 
 #endif

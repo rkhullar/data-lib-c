@@ -7,12 +7,15 @@
 #ifndef STRING_H
 #define STRING_H
 
-typedef struct string {
+#define string_join(...) string_join_wrap((string_join_args){__VA_ARGS__});
+
+typedef struct
+{
   char *ptr;
   unsigned int length;
 } string;
 
-typedef struct string_class
+typedef struct
 {
   string   (*init)  (const char*);
   string * (*mllc)  (const char*);
@@ -20,8 +23,18 @@ typedef struct string_class
   unsigned int (*length)(string *);
   void     (*print) (string*);
   bool     (*equal) (string*, string*);
-  string * (*join)  (unsigned int n, string *d, string *a[]);
+  string * (*join)  (unsigned int n, string *a[], string *d, string *px, string *sx);
 } string_class;
+
+
+typedef struct
+{
+  unsigned int n;
+  string **a;
+  string *d;
+  string *px;
+  string *sx;
+} string_join_args;
 
 extern string_class string_clazz();
 
@@ -32,6 +45,8 @@ extern void string_free(unsigned int, string *a[]);
 static void string_print(string*);
 static unsigned int string_length(string*);
 static bool string_equal(string*, string*);
-static string* string_join(unsigned int n, string *d, string *a[]);
+
+static string* string_join_base(unsigned int n, string *a[], string *d, string *sx, string *fx);
+extern string* string_join_wrap(string_join_args args);
 
 #endif

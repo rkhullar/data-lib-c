@@ -37,8 +37,9 @@ void test03()
   a[0] = String.mllc("hello");
   a[1] = String.mllc("cruel");
   a[2] = String.mllc("world");
-  string *d = String.mllc(", ");
-  string *s = String.join(3, d, a);
+  //string *d = String.mllc(", ");
+  //string *s = String.join(3, a, d);
+  string *s = string_join(3, a);
   String.print(s);
   printf("N = %d\n", s->length);
   free(s);
@@ -50,5 +51,4 @@ int main()
   //test01();
   //test02();
   test03();
-  return 0;
 }

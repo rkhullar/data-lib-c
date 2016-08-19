@@ -20,7 +20,7 @@ extern string_class string_clazz()
   c.length = &string_length;
   c.print  = &string_print;
   c.equal  = &string_equal;
-  c.join   = &string_join;
+  c.join   = &string_join_base;
   return c;
 }
 //}}}
@@ -75,11 +75,19 @@ static bool string_equal(string* a, string* b)
   return *x == *y;
 }
 
+extern string * string_join_wrap(string_join_args args)
+{
+  string *d = args.d ? args.d   : string_mllc(", ");
+  string *p = args.px ? args.px : string_mllc("");
+  string *s = args.sx ? args.sx : string_mllc("");
+  return string_join_base(args.n, args.a, d, p, s);
+}
+
 /*
  * @input  : length string array, delimiter, string array
  * @output : joined string
  */
-static string* string_join(unsigned int n, string *d, string *a[])
+static string * string_join_base(unsigned int n, string *a[], string *d, string *px, string *sx)
 {
   string **t = a, *s; char *m, *c;
   unsigned int ls[n], l, x, y=0;
