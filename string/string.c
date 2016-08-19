@@ -16,6 +16,7 @@ extern string_class string_clazz()
   string_class c;
   c.init   = &string_init;
   c.mllc   = &string_mllc;
+  c.free   = &string_free;
   c.length = &string_length;
   c.print  = &string_print;
   c.equal  = &string_equal;
@@ -41,6 +42,16 @@ extern string * string_mllc(const char* str)
   return o;
 }
 
+extern void string_free(unsigned int n, string *a[])
+{
+  string **t = a;
+  for(unsigned int x = 0; x < n; x++)
+  {
+    free(*t);
+    t++;
+  }
+}
+
 static unsigned int string_length(string* o)
 {
   char *c = o->ptr;
@@ -64,9 +75,33 @@ static bool string_equal(string* a, string* b)
   return *x == *y;
 }
 
-static string* string_join(string *a[])
+static string* string_join(unsigned int n, string *d, string *a[])
 {
-  return string_mllc("join");
+  string **t = a, *s; char *m, *c;
+  unsigned int ls[n], dl, l=0, x=0, y=0;
+  dl = string_length(d);
+  for(; x < n; x++)
+  {
+    ls[x] = string_length(a[x]);
+    l += ls[x];
+    t++;
+  }
+  l += dl*(n-1) + 1;
+  s = string_mllc("");
+  m = (char*) malloc(l*sizeof(char));
+  for(x = 0; x < n; x++)
+  {
+    c = a[x]->ptr;
+    while(*c)
+      m[y++] = *c++;
+    c = d->ptr;
+    while(*c && y < l-1)
+      m[y++] = *c++;
+  }
+  m[y] = '\0';
+  s->ptr = m;
+  s->length = l-1;
+  return s;
 }
 
 //}}}

@@ -30,9 +30,25 @@ void test02()
   free(a); free(b);
 }
 
+void test03()
+{
+  string_class String = string_clazz();
+  string *a[3];
+  a[0] = String.mllc("hello");
+  a[1] = String.mllc("cruel");
+  a[2] = String.mllc("world");
+  string *d = String.mllc(", ");
+  string *s = String.join(3, d, a);
+  String.print(s);
+  printf("N = %d\n", s->length);
+  free(s);
+  String.free(3, a);
+}
+
 int main()
 {
   //test01();
-  test02();
+  //test02();
+  test03();
   return 0;
 }
