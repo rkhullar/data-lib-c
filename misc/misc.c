@@ -44,3 +44,22 @@ extern char * join(unsigned int n, char *a[])
   s[y] = '\0';
   return s;
 }
+
+extern bool string_eq(char *a, char *b)
+{
+  while(*a != '\0' && *a != '\0')
+    if(*a++ != *b++)
+      return false;
+  return *a == *b;
+}
+
+extern void test(char *a[])
+{
+  unsigned int x = 0;
+  while(!string_eq(*a, ""))
+  {
+    a++;
+    x++;
+  }
+  printf("%d\n", x);
+}

@@ -57,11 +57,27 @@ void test04()
   free(n1); free(n2); free(n3); free(l);
 }
 
+void test05()
+{
+  char *a = "hello";
+  char *b = "hello";
+  bool t = string_eq(a, b);
+  printf("%s = %s: %d\n", a, b, t);
+}
+
+void test06()
+{
+  char *a[] = {"one", "two", "three", ""};
+  test(a);
+}
+
 int main()
 {
   //test01();
   //test02();
   //test03();
-  test04();
+  //test04();
+  //test05();
+  test06();
   return 0;
 }
