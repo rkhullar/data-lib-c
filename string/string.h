@@ -30,10 +30,10 @@ typedef struct
 typedef struct
 {
   unsigned int n;
-  string **a;
-  string *d;
-  string *px;
-  string *sx;
+  string **array;
+  string *delim;
+  string *prefix;
+  string *suffix;
 } string_join_args;
 
 extern string_class string_clazz();

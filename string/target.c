@@ -37,9 +37,11 @@ void test03()
   a[0] = String.mllc("hello");
   a[1] = String.mllc("cruel");
   a[2] = String.mllc("world");
-  //string *d = String.mllc(", ");
+  string *d  = String.mllc(" | ");
+  string *px = String.mllc("[");
+  string *sx = String.mllc("]");
   //string *s = String.join(3, a, d);
-  string *s = string_join(3, a);
+  string *s = string_join(.array=a, .n=3, .delim=d, .prefix=px, .suffix=sx);
   String.print(s);
   printf("N = %d\n", s->length);
   free(s);
