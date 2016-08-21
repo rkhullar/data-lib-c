@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/18/16
- * @updated :  08/19/16
+ * @updated :  08/21/16
  */
 
 #include <stdio.h>
@@ -9,16 +9,30 @@
 #include <stdbool.h>
 
 #include "string.h"
-#include "misc.h"
+
+//{{{
+char * itoa(int x)
+{
+  unsigned int l = snprintf(NULL, 0, "%d", x) + 1;
+  char *p = (char*) malloc(l*sizeof(char));
+  snprintf(p, l+1, "%d", x);
+  return p;
+}
+//}}}
 
 void test01()
 {
   string_class String = string_clazz();
-  string *s = String.mllc("hello world");
-  String.print(s);
-  int l = String.length(s);
-  printf("%d\n", l);
-  free(s);
+  int x, l, N = 2; string *a[N];
+  a[0] = String.mllc("hello world");
+  a[1] = String.mllc("");
+  for(x = 0; x < N; x++)
+  {
+    String.print(a[x]);
+    l = String.length(a[x]);
+    printf("%d\n", l);
+    free(a[x]);
+  }
 }
 
 void test02()
@@ -38,11 +52,7 @@ void test03()
   a[0] = String.mllc("hello");
   a[1] = String.mllc("cruel");
   a[2] = String.mllc("world");
-  string *d  = String.mllc(" | ");
-  string *px = String.mllc("[");
-  string *sx = String.mllc("]");
-  //string *s = String.join(3, a, d);
-  string *s = string_join(.array=a, .n=3, .delim=d, .prefix=px, .suffix=sx);
+  string *s = string_join(.array=a, .n=3, .delim=" : ", .prefix="[", .suffix="]");
   String.print(s);
   printf("N = %d\n", s->length);
   free(s);
@@ -60,7 +70,8 @@ void test04()
     s[x] = String.mllc(c[x]);
     //printf("%s\n", s[x]->ptr);
   }
-  string *t = string_join(.array=s, .n=N, .prefix=String.mllc("{"), .suffix=String.mllc("}"));
+  string *t = string_join(.array=s, .n=N, .prefix="[", .suffix="]");
+  //string *t = string_join(N, s);
   String.print(t);
   for(x = 0; x < N; x++)
   {

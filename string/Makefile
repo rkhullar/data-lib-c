@@ -1,8 +1,8 @@
 CC      = gcc
 CFLAGS  =
 EXEC    = target
-DEPS    = string.h misc.h
-OBJS    = string.o misc.o target.o
+DEPS    = string.h
+OBJS    = string.o target.o
 
 default: clean compile
 

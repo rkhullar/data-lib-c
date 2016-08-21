@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/18/16
- * @updated :  08/19/16
+ * @updated :  08/21/16
  */
 
 #include <stdio.h>
@@ -54,10 +54,15 @@ extern void string_free(unsigned int n, string *a[])
 
 static unsigned int string_length(string* o)
 {
-  char *c = o->ptr;
+  const char *c = o->ptr;
+  o->length = string_clen(c);
+  return o->length;
+}
+
+static unsigned int string_clen(const char* c)
+{
   unsigned int l = 0;
   while(*c++) l++;
-  o->length = l;
   return l;
 }
 
@@ -77,9 +82,9 @@ static bool string_equal(string* a, string* b)
 
 extern string * string_join_wrap(string_join_args args)
 {
-  string *d = args.delim  ? args.delim  : string_mllc(", ");
-  string *p = args.prefix ? args.prefix : string_mllc("");
-  string *s = args.suffix ? args.suffix : string_mllc("");
+  const char *d = args.delim  ? args.delim  : ", ";
+  const char *p = args.prefix ? args.prefix : "";
+  const char *s = args.suffix ? args.suffix : "";
   return string_join_base(args.n, args.array, d, p, s);
 }
 
@@ -87,7 +92,7 @@ extern string * string_join_wrap(string_join_args args)
  * @input  : length string array, delimiter, string array
  * @output : joined string
  */
-static string * string_join_base(unsigned int n, string *a[], string *d, string *px, string *sx)
+static string * string_join_base(unsigned int n, string *a[], const char *d, const char *px, const char *sx)
 {
   string **t = a, *s; char *m, *c;
   unsigned int ls[n], l, k, x, y=0;
@@ -98,13 +103,13 @@ static string * string_join_base(unsigned int n, string *a[], string *d, string 
     l += ls[x];
     t++;
   }
-  l += (n-1)*d->length + px->length + sx->length + 1;
-  k = l - sx->length - 1;
+  l += (n-1)*string_clen(d) + string_clen(px) + string_clen(sx) + 1;
+  k = l - string_clen(sx) - 1;
   // create output string
   s = string_mllc("");
-  m = (char*) malloc(l*sizeof(char));
   // add prefix
-  c = px->ptr;
+  m = (char*) malloc(l*sizeof(char));
+  c = (char*) px;
   while(*c)
     m[y++] = *c++;
   for(x = 0; x < n; x++)
@@ -114,12 +119,12 @@ static string * string_join_base(unsigned int n, string *a[], string *d, string 
     while(*c)
       m[y++] = *c++;
     // add chars from delimiter
-    c = d->ptr;
+    c = (char*) d;
     while(*c && y < k)
       m[y++] = *c++;
   }
   // add suffix
-  c = sx->ptr;
+  c = (char*) sx;
   while(*c)
     m[y++] = *c++;
   m[y] = '\0'; // terminator
@@ -127,5 +132,4 @@ static string * string_join_base(unsigned int n, string *a[], string *d, string 
   s->length = l-1;
   return s;
 }
-
 //}}}

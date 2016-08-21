@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/18/16
- * @updated :  08/19/16
+ * @updated :  08/21/16
  */
 
 #ifndef STRING_H
@@ -23,7 +23,7 @@ typedef struct
   unsigned int (*length)(string *);
   void     (*print) (string*);
   bool     (*equal) (string*, string*);
-  string * (*join)  (unsigned int n, string *a[], string *d, string *px, string *sx);
+  string * (*join)  (unsigned int n, string *a[], const char *d, const char *px, const char *sx);
 } string_class;
 
 
@@ -31,9 +31,9 @@ typedef struct
 {
   unsigned int n;
   string **array;
-  string *delim;
-  string *prefix;
-  string *suffix;
+  char *delim;
+  char *prefix;
+  char *suffix;
 } string_join_args;
 
 extern string_class string_clazz();
@@ -44,9 +44,10 @@ extern void string_free(unsigned int, string *a[]);
 
 static void string_print(string*);
 static unsigned int string_length(string*);
+static unsigned int string_clen(const char*);
 static bool string_equal(string*, string*);
 
-static string* string_join_base(unsigned int n, string *a[], string *d, string *sx, string *fx);
+static string* string_join_base(unsigned int n, string *a[], const char *d, const char *px, const char *sx);
 extern string* string_join_wrap(string_join_args args);
 
 #endif
