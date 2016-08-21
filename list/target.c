@@ -27,7 +27,7 @@ void test02()
   list_class List = list_clazz();
   list l = List.init();
   printf("%p\n", l.head);
-  List.insert(&l, 4);
+  List.insert(&l, 0, 4);
   printf("%d\n", l.curr->data);
 }
 
@@ -57,11 +57,27 @@ void test04()
   free(n1); free(n2); free(n3); free(l);
 }
 
+void test05()
+{
+  node_gstr = &itoa;
+  node_geq = &ieq;
+  list_class List = list_clazz();
+  node_class Node = node_clazz();
+  list *l = List.mllc();
+  printf("%d\n", List.empty(l));
+  node *n = Node.mllc(5);
+  l->head = n; l->tail = n; l->size = 1;
+  printf("%d\n", List.empty(l));
+  List.print(l);
+  free(n); free(l);
+}
+
 int main()
 {
   //test01();
   //test02();
   //test03();
-  test04();
+  //test04();
+  test05();
   return 0;
 }

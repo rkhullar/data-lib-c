@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/13/16
- * @updated :  08/20/16
+ * @updated :  08/21/16
  */
 
 #include <stdio.h>
@@ -9,10 +9,10 @@
 #include <stdbool.h>
 
 #include "macros.h"
+#include "string.h"
+
 #include "node.h"
 #include "list.h"
-#include "string.h"
-#include "misc.h"
 
 //{{{
 
@@ -34,10 +34,15 @@ extern list * list_mllc()
   return o;
 }
 
-static void list_insert(list *o, T x)
+static bool list_empty(list *o)
+{
+  return o->head == NULL && o->tail == NULL;
+}
+
+static void list_insert(list *o, int x, T d)
 {
   node_class Node = node_clazz();
-  node *n = Node.mllc(x);
+  node *n = Node.mllc(d);
   o->size = 1;
   o->head = n;
   o->tail = n;
@@ -78,6 +83,7 @@ extern list_class list_clazz()
   c.mllc   = &list_mllc;
   c.str    = &list_str;
   c.print  = &list_print;
+  c.empty  = &list_empty;
   c.insert = &list_insert;
   return c;
 }
