@@ -46,25 +46,19 @@ static void list_insert(list *o, T x)
 
 static char * list_str(list *o)
 {
-  int x = 1, n = o->size;
+  int x = 0, n = o->size;
   string *a[n]; char *t;
   node *c = o->head;
-  while(c != NULL)
+  while(c)
   {
     t = node_gstr(c->data);
     a[x++] = string_mllc(t);
     c = c->next;
   }
-  /*
-  string *s = string_join
-  (.array=a, .n=n,
-   .delim=string_mllc(", "),
-   .prefix=string_mllc("["),
-   .suffix=string_mllc("]"));
-  */
-  string_free(n, a);
-  //return s->ptr;
-  return string_mllc("hello")->ptr;
+  string *s = string_join(n, a, .prefix="[", .suffix="]");
+  char *z = s->ptr;
+  free(s);
+  return z;
 }
 //}}}
 
@@ -72,8 +66,7 @@ static void list_print(list *o)
 {
   char *p = list_str(o);
   printf("%s\n", p);
-  free(p);
-  printf("list print complete\n");
+  free(p); // will fail if *p on stack
 }
 
 //{{{

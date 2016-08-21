@@ -54,7 +54,6 @@ void test04()
   n2->prev = n1; n2->next = n3;
   n3->prev = n2;
   List.print(l);
-  printf("about to free nodes and list\n");
   free(n1); free(n2); free(n3); free(l);
 }
 

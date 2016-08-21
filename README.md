@@ -30,6 +30,10 @@ gcc
 ## TODO
 1. Add compiler flags -Wall -Werror
 
+## Troubleshoot
+1. string
+pointers to the stack cannot be freed. the print method calls free.
+
 ## References
 1. http://www.cprogramming.com/tutorial/function-pointers.html
 2. http://stackoverflow.com/questions/1472138/c-default-arguments
