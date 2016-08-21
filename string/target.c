@@ -9,6 +9,7 @@
 #include <stdbool.h>
 
 #include "string.h"
+#include "misc.h"
 
 void test01()
 {
@@ -48,9 +49,30 @@ void test03()
   String.free(3, a);
 }
 
+void test04()
+{
+  string_class String = string_clazz();
+  int x=0, N = 5, i[] = {12, 34, 56, 78, 90};
+  char *c[N]; string *s[N];
+  for(x = 0; x < N; x++)
+  {
+    c[x] = itoa(i[x]);
+    s[x] = String.mllc(c[x]);
+    //printf("%s\n", s[x]->ptr);
+  }
+  string *t = string_join(.array=s, .n=N, .prefix=String.mllc("{"), .suffix=String.mllc("}"));
+  String.print(t);
+  for(x = 0; x < N; x++)
+  {
+    free(c[x]);
+    free(s[x]);
+  }
+}
+
 int main()
 {
   //test01();
   //test02();
-  test03();
+  //test03();
+  test04();
 }

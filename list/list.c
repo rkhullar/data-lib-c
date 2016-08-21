@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/13/16
- * @updated :  08/18/16
+ * @updated :  08/20/16
  */
 
 #include <stdio.h>
@@ -11,10 +11,8 @@
 #include "macros.h"
 #include "node.h"
 #include "list.h"
+#include "string.h"
 #include "misc.h"
-
-//{{{
-//}}}
 
 //{{{
 
@@ -49,15 +47,24 @@ static void list_insert(list *o, T x)
 static char * list_str(list *o)
 {
   int x = 1, n = o->size;
-  char *a[n+2];
-  node *t = o->head;
-  while(t != NULL)
+  string *a[n]; char *t;
+  node *c = o->head;
+  while(c != NULL)
   {
-    a[x++] = node_gstr(t->data);
-    t = t->next;
+    t = node_gstr(c->data);
+    a[x++] = string_mllc(t);
+    c = c->next;
   }
-  a[0] = "["; a[n+1] = "]";
-  return join(n+2, a);
+  /*
+  string *s = string_join
+  (.array=a, .n=n,
+   .delim=string_mllc(", "),
+   .prefix=string_mllc("["),
+   .suffix=string_mllc("]"));
+  */
+  string_free(n, a);
+  //return s->ptr;
+  return string_mllc("hello")->ptr;
 }
 //}}}
 
@@ -66,6 +73,7 @@ static void list_print(list *o)
   char *p = list_str(o);
   printf("%s\n", p);
   free(p);
+  printf("list print complete\n");
 }
 
 //{{{

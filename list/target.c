@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/13/16
- * @updated :  08/17/16
+ * @updated :  08/20/16
  */
 
 #include <stdio.h>
@@ -54,21 +54,8 @@ void test04()
   n2->prev = n1; n2->next = n3;
   n3->prev = n2;
   List.print(l);
+  printf("about to free nodes and list\n");
   free(n1); free(n2); free(n3); free(l);
-}
-
-void test05()
-{
-  char *a = "hello";
-  char *b = "hello";
-  bool t = string_eq(a, b);
-  printf("%s = %s: %d\n", a, b, t);
-}
-
-void test06()
-{
-  char *a[] = {"one", "two", "three", ""};
-  test(a);
 }
 
 int main()
@@ -76,8 +63,6 @@ int main()
   //test01();
   //test02();
   //test03();
-  //test04();
-  //test05();
-  test06();
+  test04();
   return 0;
 }
