@@ -13,7 +13,7 @@ typedef struct node node;
 typedef struct node_class node_class;
 
 typedef char * (*StringFunc)(T);
-typedef bool (*EqualFunc)(T,T);
+typedef bool   (*EqualFunc)(T,T);
 
 struct node {
   T data;

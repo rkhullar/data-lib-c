@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/13/16
- * @updated :  08/20/16
+ * @updated :  08/28/16
  */
 
 #include <stdio.h>
@@ -13,10 +13,19 @@
 #include "list.h"
 #include "misc.h"
 
-void test01()
+node_class Node;
+list_class List;
+
+void setup()
 {
   node_gstr = &itoa;
-  node_class Node = node_clazz();
+  node_geq = &ieq;
+  Node = node_clazz();
+  List = list_clazz();
+}
+
+void test01()
+{
   node *ptr = Node.mllc(42);
   Node.print(ptr);
   free(ptr);
@@ -24,7 +33,6 @@ void test01()
 
 void test02()
 {
-  list_class List = list_clazz();
   list l = List.init();
   printf("%p\n", l.head);
   List.insert(&l, 0, 4);
@@ -40,10 +48,6 @@ void test03()
 
 void test04()
 {
-  node_gstr = &itoa;
-  node_geq = &ieq;
-  node_class Node = node_clazz();
-  list_class List = list_clazz();
   list *l = List.mllc();
   node *n1, *n2, *n3;
   n1 = Node.mllc(1);
@@ -59,10 +63,6 @@ void test04()
 
 void test05()
 {
-  node_gstr = &itoa;
-  node_geq = &ieq;
-  list_class List = list_clazz();
-  node_class Node = node_clazz();
   list *l = List.mllc();
   printf("%d\n", List.empty(l));
   node *n = Node.mllc(5);
@@ -74,9 +74,6 @@ void test05()
 
 void test06()
 {
-  node_gstr = &itoa;
-  node_geq = &ieq;
-  list_class List = list_clazz();
   list *l = List.mllc();
   for(int i=0; i<10; i++)
     List.insert(l, -1, i);
@@ -86,6 +83,7 @@ void test06()
 
 int main()
 {
+  setup();
   //test01();
   //test02();
   //test03();

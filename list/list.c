@@ -1,7 +1,7 @@
 /*
  * @author  :  Rajan Khullar
  * @created :  08/13/16
- * @updated :  08/21/16
+ * @updated :  08/28/16
  */
 
 #include <stdio.h>
@@ -54,7 +54,6 @@ static bool list_empty(list *o)
 
 static void list_insert(list *o, int x, T d)
 {
-  node_class Node = node_clazz();
   node *n, *p;
   if(list_empty(o))
   {
@@ -63,7 +62,7 @@ static void list_insert(list *o, int x, T d)
   }
   if(x == -1)
   {
-    n = Node.mllc(d); p = o->tail;
+    n = node_mllc(d); p = o->tail;
     p->next = n; n->prev = p;
     o->tail = n; o->curr = n;
     o->size++;
@@ -72,8 +71,7 @@ static void list_insert(list *o, int x, T d)
 
 static void list_reset(list *o, T d)
 {
-  node_class Node = node_clazz();
-  node *n = Node.mllc(d);
+  node *n = node_mllc(d);
   o->head = n;
   o->tail = n;
   o->curr = n;
