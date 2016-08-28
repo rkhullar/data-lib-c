@@ -20,6 +20,7 @@ typedef struct
 {
   list   (*init)   ();
   list * (*mllc)   ();
+  void   (*free)   (list*);
   char * (*str)    (list*);
   void   (*print)  (list*);
   bool   (*empty)  (list*);
@@ -29,10 +30,12 @@ typedef struct
 extern list_class list_clazz();
 extern list list_init();
 extern list * list_mllc();
+extern void list_free(list*);
 
 static char * list_str    (list*);
 static void   list_print  (list*);
 static bool   list_empty  (list*);
+static void   list_reset  (list*, T d);
 static void   list_insert (list*, int x, T d);
 
 #endif //LINKED_LIST_H

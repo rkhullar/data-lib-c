@@ -72,12 +72,25 @@ void test05()
   free(n); free(l);
 }
 
+void test06()
+{
+  node_gstr = &itoa;
+  node_geq = &ieq;
+  list_class List = list_clazz();
+  list *l = List.mllc();
+  for(int i=0; i<10; i++)
+    List.insert(l, -1, i);
+  List.print(l);
+  List.free(l);
+}
+
 int main()
 {
   //test01();
   //test02();
   //test03();
   //test04();
-  test05();
+  //test05();
+  test06();
   return 0;
 }

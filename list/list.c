@@ -19,7 +19,8 @@
 extern list list_init()
 {
   list o;
-  o.size = 0;
+  o.size =  0;
+  o.x    = -1;
   o.head = NULL;
   o.tail = NULL;
   o.curr = NULL;
@@ -34,6 +35,18 @@ extern list * list_mllc()
   return o;
 }
 
+extern void list_free(list *o)
+{
+  node *c = o->head;
+  while(c->next)
+  {
+    c = c->next;
+    free(c->prev);
+  }
+  free(c);
+  free(o);
+}
+
 static bool list_empty(list *o)
 {
   return o->head == NULL && o->tail == NULL;
@@ -42,11 +55,30 @@ static bool list_empty(list *o)
 static void list_insert(list *o, int x, T d)
 {
   node_class Node = node_clazz();
+  node *n, *p;
+  if(list_empty(o))
+  {
+    list_reset(o, d);
+    return;
+  }
+  if(x == -1)
+  {
+    n = Node.mllc(d); p = o->tail;
+    p->next = n; n->prev = p;
+    o->tail = n; o->curr = n;
+    o->size++;
+  }
+}
+
+static void list_reset(list *o, T d)
+{
+  node_class Node = node_clazz();
   node *n = Node.mllc(d);
-  o->size = 1;
   o->head = n;
   o->tail = n;
   o->curr = n;
+  o->size = 1;
+  o->x    = 0;
 }
 
 static char * list_str(list *o)
@@ -81,6 +113,7 @@ extern list_class list_clazz()
   list_class c;
   c.init   = &list_init;
   c.mllc   = &list_mllc;
+  c.free   = &list_free;
   c.str    = &list_str;
   c.print  = &list_print;
   c.empty  = &list_empty;
