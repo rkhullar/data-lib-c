@@ -37,3 +37,6 @@ pointers to the stack cannot be freed. the print method calls free.
 ## References
 1. http://www.cprogramming.com/tutorial/function-pointers.html
 2. http://stackoverflow.com/questions/1472138/c-default-arguments
+3. http://www.yolinux.com/TUTORIALS/LibraryArchives-StaticAndDynamic.html
+4. http://www.cprogramming.com/tutorial/shared-libraries-linux-gcc.html
+5. https://codeyarns.com/2014/01/14/how-to-add-library-directory-to-ldconfig-cache/
