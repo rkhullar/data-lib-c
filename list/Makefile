@@ -1,5 +1,5 @@
 CC      = gcc
-CFLAGS  = -I ../string -I ../misc # -Wall
+CFLAGS  = -I /opt/lib # -Wall
 EXEC    = target
 DEPS    = node.h list.h string.h misc.h macros.h
 OBJS    = node.o list.o string.o misc.o target.o
