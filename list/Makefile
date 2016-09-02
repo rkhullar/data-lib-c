@@ -1,21 +1,28 @@
 CC      = gcc
-CFLAGS  = -I /opt/lib # -Wall
+IDIR    = /opt/lib
+LDIR    = /opt/lib
 EXEC    = target
-DEPS    = node.h list.h string.h misc.h macros.h
-OBJS    = node.o list.o string.o misc.o target.o
+DEPS    = node.h list.h macros.h
+OBJS    = node.o list.o target.o
+LIBS    = -lmisc -lstring
+CFLAGS  = -I $(IDIR) -L $(LDIR)
 
 default: clean compile
 
 clean:
 	@rm -rf $(EXEC) *.o *.h.gch
 
-compile:
+%.o: %.c $(DEPS)
+	$(CC) -c $< $(CFLAGS) -o $@
+
+compile: $(OBJS)
+	$(CC) $^ $(CFLAGS) -o $(EXEC) $(LIBS)
+
+manual:
 	$(CC) -c target.c $(CFLAGS) -o target.o
-	$(CC) -c node.c $(CFLAGS) -o node.o
-	$(CC) -c list.c $(CFLAGS) -o list.o
-	$(CC) -c ../string/string.c $(CFLAGS) -o string.o
-	$(CC) -c ../misc/misc.c $(CFLAGS) -o misc.o
-	$(CC) $(OBJS) $(CFLAGS) -o $(EXEC)
+	$(CC) -c node.c   $(CFLAGS) -o node.o
+	$(CC) -c list.c   $(CFLAGS) -o list.o
+	$(CC) $(OBJS) $(CFLAGS) -o $(EXEC) $(LIBS)
 
 test: default
 	./$(EXEC)
